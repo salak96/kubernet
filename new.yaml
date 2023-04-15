@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-javascript
+  namespace: default
+  labels:
+    app: app-javascript
+spec:
+  selector:
+    matchLabels:
+      app: app-javascript
+  replicas: 1 
+  template:
+    metadata:
+      labels:
+        app: app-javascript
+    spec:
+      containers:
+      - name: app-javascript
+        image:  lambang10/node-web-app
+        resources:
+          requests:
+            cpu: 100m
+            memory: 100Mi
+          limits:
+            cpu: 100m
+            memory: 100Mi
+        ports:
+        - containerPort:  3000
+          name: app-javascript
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: app-javascript
+spec:
+  selector:
+    app: app-javascript
+  type:  LoadBalancer
+  ports:
+  - port:  80
+    targetPort:  3000
+    nodePort:  30000
