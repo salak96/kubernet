@@ -14,6 +14,6 @@
 
 ## MINIKUBE
 ``` MINIKUBE START ```
-``` kubectl apply -f pods.yaml```
+``` kubectl apply -f new.yaml```
 ``` kubectl create -f new.yaml```
-``` minikube service <SERVICE_NAME>```
+``` minikube service app-javascript```
